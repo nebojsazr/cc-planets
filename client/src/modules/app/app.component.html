@@ -1,0 +1,19 @@
+<header>
+    @if (headerStateService.headerState(); as header) {
+        <h1>{{ header.title }}</h1>
+
+        <div class="toolbar">
+            @if (header.toolbarType === ToolbarType.BROWSE) {
+                <app-browse-toolbar></app-browse-toolbar>
+            }
+            @if (header.toolbarType === ToolbarType.DETAILS) {
+                <app-details-toolbar></app-details-toolbar>
+            }
+        </div>
+    }
+</header>
+
+<article>
+    <router-outlet></router-outlet>
+</article>
+

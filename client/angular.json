@@ -9,14 +9,15 @@
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true,
-          "standalone": false
+          "standalone": true,
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:class": {
           "skipTests": true
         },
         "@schematics/angular:directive": {
           "skipTests": true,
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:guard": {
           "skipTests": true

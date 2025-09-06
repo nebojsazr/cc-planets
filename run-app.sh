@@ -8,4 +8,4 @@ wait $(lsof -t -i:$clientPort) 2> /dev/null
 kill $(lsof -t -i:$apiPort) 2> /dev/null
 wait $(lsof -t -i:$apiPort) 2> /dev/null
 cd $api && npm start &
-cd $client && ng serve &
+cd $client && npm start &

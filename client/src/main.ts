@@ -1,8 +1,14 @@
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { provideHttpClient }    from '@angular/common/http';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations }    from '@angular/platform-browser/animations';
+import { provideRouter }        from '@angular/router';
+import { APP_ROUTES }           from './modules/app/app-routing.module';
+import { AppComponent }         from './modules/app/app.component';
 
-import {AppModule} from './app/app.module';
-
-platformBrowserDynamic().bootstrapModule(AppModule, {
-    ngZoneEventCoalescing: true
-})
-    .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideRouter([...APP_ROUTES]),
+        provideHttpClient(),
+        provideAnimations(),
+    ],
+}).catch(err => console.error(err));

@@ -1,0 +1,37 @@
+@if (planet$ | async; as planet) {
+    <div class="planet-detail-grid">
+        <mat-card class="planet-main-card">
+            <div class="planet-main-content">
+                <app-planet-thumbnail
+                        [planet]="planet"
+                        size="large"
+                ></app-planet-thumbnail>
+                <div class="planet-info">
+                    <h2>{{ planet.planetName }}</h2>
+                    <p class="description">{{ planet.description }}</p>
+                </div>
+            </div>
+        </mat-card>
+
+        <!-- Stat cards -->
+        <mat-card class="stat-card">
+            <div class="stat-value">{{ planet.planetRadiusKM }}</div>
+            <div class="stat-label">Radius in km</div>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <div class="stat-value">{{ planet.distInMillionsKM.fromSun }}</div>
+            <div class="stat-label">Dist. from Sun</div>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <div class="stat-value">{{ planet.planetColor }}</div>
+            <div class="stat-label">Color</div>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <div class="stat-value">{{ planet.distInMillionsKM.fromEarth }}</div>
+            <div class="stat-label">Dist. from Earth</div>
+        </mat-card>
+    </div>
+}

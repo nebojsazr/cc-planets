@@ -1,0 +1,6 @@
+<div class="planets-grid">
+    @for(planet of planets$ | async; track planet.id) {
+        <app-planet-card [planet]="planet"></app-planet-card>
+    }
+</div>
+

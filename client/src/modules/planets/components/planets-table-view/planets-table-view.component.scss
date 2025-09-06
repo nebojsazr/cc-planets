@@ -1,0 +1,59 @@
+@import '../../../../assets/styles/variables';
+
+table {
+    width: 100%;
+    table-layout: fixed;
+
+    th.mat-column-name,
+    td.mat-column-name {
+        width: 40%; // <-- make wider (adjust as needed)
+    }
+
+
+    .mat-mdc-header-cell {
+        color: $tiny-text-color;
+        font-weight: 400;
+    }
+    
+    td {
+        &.mat-mdc-cell {
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 0;
+            overflow: hidden;
+            padding: 0 1rem;
+
+            app-planet-thumbnail {
+                flex-shrink: 0;
+            }
+            
+            & > div {
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                overflow: hidden;
+                flex: 1;
+                
+                .title {
+                    font-size: 1.125rem;
+                    line-height: 1.2;
+                    margin-bottom: 0.25rem;
+                }
+
+                .description {
+                    font-size: 0.875rem;
+                    color: $tiny-text-color;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}

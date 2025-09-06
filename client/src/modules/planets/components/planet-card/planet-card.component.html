@@ -1,0 +1,33 @@
+<mat-card class="planet-card">
+    <mat-card-header>
+        <app-planet-thumbnail [planet]="planet"></app-planet-thumbnail>
+    </mat-card-header>
+
+    <mat-card-title>{{ planet.planetName }}</mat-card-title>
+
+    <mat-card-content>
+        <p class="description">{{ planet.description }}</p>
+
+        <div class="planet-data">
+            <div class="planet-data-cell">
+                <div class="value">{{ planet.planetColor }}</div>
+                <div class="label">Color</div>
+            </div>
+
+            <div class="planet-data-cell">
+                <div class="value">{{ planet.distInMillionsKM.fromSun }}</div>
+                <div class="label">Dist. from Sun</div>
+            </div>
+
+            <div class="planet-data-cell">
+                <div class="value">{{ planet.planetRadiusKM }}</div>
+                <div class="label">Radius in km</div>
+            </div>
+
+            <div class="planet-data-cell">
+                <div class="value">{{ planet.distInMillionsKM.fromEarth }}</div>
+                <div class="label">Dist. from Earth</div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

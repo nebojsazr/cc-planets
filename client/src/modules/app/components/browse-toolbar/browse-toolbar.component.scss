@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    
+    ::ng-deep {
+        .mat-button-toggle-checked .mat-pseudo-checkbox {
+            display: none !important;
+        }
+    }
+    
+    
+    
+    
+}

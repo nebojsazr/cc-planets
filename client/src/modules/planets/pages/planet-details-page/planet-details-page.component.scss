@@ -1,0 +1,78 @@
+@import '../../../../assets/styles/variables';
+
+.planet-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: stretch;
+
+    @media screen and (min-width: $breakpoint-md) {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+    
+    .mat-mdc-card {
+        border-radius: 0.5rem;
+    }
+}
+
+.planet-main-card {
+    padding: 1.5rem;
+    justify-content: center;
+
+    @media screen and (min-width: $breakpoint-md) {
+        grid-row: span 4;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        grid-row: span 2;
+    }
+
+    .planet-main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+
+        @media screen and (min-width: $breakpoint-sm) {
+            flex-direction: row;
+            text-align: inherit;
+        }
+
+        .planet-info {
+            flex: 1;
+
+            h2 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.5rem;
+            }
+
+            .description {
+                font-size: 0.875rem;
+                color: $tiny-text-color;
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    justify-content: center;
+    gap: 0.375rem;
+
+    .stat-value {
+        font-size: 1.25rem;
+        font-weight: 5400;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: $tiny-text-color;
+    }
+}
