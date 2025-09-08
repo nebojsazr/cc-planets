@@ -1,3 +1,7 @@
-<div class="thumbnail-wrapper" [style.width.rem]="sizeValue"  [style.height.rem]="sizeValue">
-    <img [ngSrc]="planet.imageUrl" [alt]="planet.planetName" fill />
-</div>
+@if (planet.imageUrl && planet.imageName) {
+    <div class="thumbnail-wrapper" [style.width.rem]="sizeValue"  [style.height.rem]="sizeValue">
+        <img [ngSrc]="planet.imageUrl" [alt]="planet.planetName" fill [priority]="true" />
+    </div>
+} @else {
+    <p>No Image</p>
+}

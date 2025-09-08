@@ -1,11 +1,13 @@
-import { HttpClient }      from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {
     inject,
     Injectable,
-}                          from '@angular/core';
-import { Observable }      from 'rxjs';
-import { Planet }          from './planet';
-import { CreatePlanetDto } from './planet.dto';
+}                     from '@angular/core';
+import {
+    map,
+    Observable,
+} from 'rxjs';
+import { Planet }     from './planet';
 
 @Injectable({providedIn: 'root'})
 export class PlanetsRepository {
@@ -15,8 +17,15 @@ export class PlanetsRepository {
     /**
      * Create a new planet
      */
-    createPlanet(data: CreatePlanetDto | FormData): Observable<Planet> {
+    createPlanet(data: Record<string, any> | FormData): Observable<Planet> {
         return this.http.post<Planet>(this.baseUrl, data);
+    }
+
+    /**
+     * Update the existing planet
+     */
+    updatePlanet(id: string, data: Record<string, any> | FormData): Observable<Planet> {
+        return this.http.put<Planet>(`${this.baseUrl}/${id}`, data);
     }
 
     /**
@@ -31,5 +40,14 @@ export class PlanetsRepository {
      */
     getSinglePlanets(id: string): Observable<Planet> {
         return this.http.get<Planet>(`${this.baseUrl}/${id}`);
+    }
+
+    /**
+     * Delete single planet.
+     */
+    deletePlanet(id: string): Observable<Planet> {
+        return this.http.delete<Planet[]>(`${this.baseUrl}/${id}`).pipe(
+            map(planets => planets[0]),
+        );
     }
 }

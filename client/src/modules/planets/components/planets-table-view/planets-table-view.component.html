@@ -33,7 +33,12 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="planetColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: planetColumns;"></tr>
+    <tr
+            mat-row
+            *matRowDef="let planet; columns: planetColumns;"
+            class="clickable"
+            [routerLink]="[ planet.id ]"
+    ></tr>
 </table>
 
 

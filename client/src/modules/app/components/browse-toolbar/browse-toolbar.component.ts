@@ -9,15 +9,23 @@ import {
     FormControl,
     ReactiveFormsModule,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import {
+    MatDialog,
+    MatDialogModule,
+} from '@angular/material/dialog';
 import { MatFormFieldModule }    from '@angular/material/form-field';
 import { MatIconModule }         from '@angular/material/icon';
 import { MatInputModule }        from '@angular/material/input';
+import { Router } from '@angular/router';
 import {
     debounceTime,
     distinctUntilChanged,
     filter,
 } from 'rxjs';
+import { PlanetFormDialogComponent } from '../../../planets/components/planet-form-dialog/planet-form-dialog.component';
+import { Planet } from '../../../planets/repository/planet';
 import {
     PreferredViewService,
     ViewType,
@@ -33,6 +41,8 @@ import { SearchService } from '../../providers/search.service';
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatButtonModule,
+        MatDialogModule,
     ],
     templateUrl:     './browse-toolbar.component.html',
     styleUrl:        './browse-toolbar.component.scss',
@@ -48,6 +58,8 @@ export class BrowseToolbarComponent implements OnInit {
         private readonly _preferredViewService: PreferredViewService,
         private readonly _searchService: SearchService,
         private readonly _destroyRef: DestroyRef,
+        private readonly _dialog: MatDialog,
+        private readonly _router: Router,
     ) {}
 
     public ngOnInit(): void {
@@ -65,6 +77,25 @@ export class BrowseToolbarComponent implements OnInit {
 
     public onViewChange(viewType: ViewType): void {
         this._preferredViewService.updateView(viewType)
+    }
+
+    openCreateDialog(): void {
+        const dialogRef = this._dialog.open(PlanetFormDialogComponent, {
+            width: '600px',
+            disableClose: true,
+            data: { mode: 'create' } // pass extra data to dialog
+        });
+
+        dialogRef.afterClosed().subscribe((result?: Planet) => {
+            if (result) {
+                console.info('Planet created: ', result);
+                // In real world scenario this would be updating a state
+                const currentUrl = this._router.url;
+                this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                    this._router.navigateByUrl(currentUrl);
+                });
+            }
+        });
     }
 
 }

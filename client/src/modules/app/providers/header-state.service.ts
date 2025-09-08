@@ -8,10 +8,12 @@ import {
     Subject,
 } from 'rxjs';
 import { ToolbarType } from '../../planets/model';
+import { Planet } from '../../planets/repository/planet';
 
 export interface IHeader {
     title: string;
-    toolbarType: ToolbarType
+    toolbarType: ToolbarType,
+    item?: Planet,
 }
 
 @Injectable({ providedIn: 'root' })

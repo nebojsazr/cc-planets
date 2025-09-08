@@ -1,19 +1,13 @@
-import {
-    AsyncPipe,
-    CommonModule,
-} from '@angular/common';
+import { AsyncPipe }               from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
 }                                  from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet }            from '@angular/router';
 import { ToolbarType }             from '../planets/model';
 import { BrowseToolbarComponent }  from './components/browse-toolbar/browse-toolbar.component';
 import { DetailsToolbarComponent } from './components/details-toolbar/details-toolbar.component';
-import {
-    HeaderStateService,
-}                                  from './providers/header-state.service';
+import { HeaderStateService }      from './providers/header-state.service';
 
 
 @Component({

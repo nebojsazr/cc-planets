@@ -2,3 +2,4 @@ export { PlanetsTableViewComponent } from './planets-table-view/planets-table-vi
 export { PlanetsCardsViewComponent } from './planets-cards-view/planets-cards-view.component';
 export { PlanetThumbnailComponent }  from './planet-thumbnail/planet-thumbnail.component';
 export { PlanetCardComponent }       from './planet-card/planet-card.component';
+export { PlanetFormDialogComponent } from './planet-form-dialog/planet-form-dialog.component';

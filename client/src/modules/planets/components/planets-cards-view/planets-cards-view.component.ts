@@ -6,6 +6,7 @@ import {
     OnChanges,
     SimpleChanges,
 }                    from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
     isObservable,
     Observable,
@@ -20,6 +21,7 @@ import { PlanetCardComponent } from '../planet-card/planet-card.component';
     imports: [
         AsyncPipe,
         PlanetCardComponent,
+        RouterLink,
     ],
     templateUrl: './planets-cards-view.component.html',
     styleUrl:    './planets-cards-view.component.scss',

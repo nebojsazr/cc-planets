@@ -50,9 +50,10 @@ export class PlanetDetailsPageComponent implements OnInit {
             map(params => params['id']),
             distinctUntilChanged(),
             switchMap((id: string) => this._planetsRepository.getSinglePlanets(id)),
-            tap(({planetName}) => this._headerStateService.updateHeaderState({
-                title: planetName,
-                toolbarType: ToolbarType.DETAILS
+            tap(planet => this._headerStateService.updateHeaderState({
+                title: planet.planetName,
+                toolbarType: ToolbarType.DETAILS,
+                item: planet,
             })),
         )
     }

@@ -7,7 +7,7 @@
                 <app-browse-toolbar></app-browse-toolbar>
             }
             @if (header.toolbarType === ToolbarType.DETAILS) {
-                <app-details-toolbar></app-details-toolbar>
+                <app-details-toolbar [planet]="(header.item!)"></app-details-toolbar>
             }
         </div>
     }

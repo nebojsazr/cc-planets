@@ -18,6 +18,7 @@ import {
     MatTableDataSource,
     MatTableModule,
 }                 from '@angular/material/table';
+import { RouterLink } from '@angular/router';
 import {
     firstValueFrom,
     isObservable,
@@ -34,6 +35,7 @@ import { PlanetThumbnailComponent } from '../planet-thumbnail/planet-thumbnail.c
         MatTableModule,
         MatSortModule,
         PlanetThumbnailComponent,
+        RouterLink,
     ],
     templateUrl:     './planets-table-view.component.html',
     styleUrl:        './planets-table-view.component.scss',
