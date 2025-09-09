@@ -1,37 +1,35 @@
 import {
     AsyncPipe,
     UpperCasePipe,
-}                              from '@angular/common';
+}                                 from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
     Inject,
-    TemplateRef,
-    ViewChild,
-}                              from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule }     from '@angular/material/button';
+}                                 from '@angular/core';
+import { ReactiveFormsModule }    from '@angular/forms';
+import { MatButtonModule }        from '@angular/material/button';
 import {
     MAT_DIALOG_DATA,
     MatDialog,
     MatDialogModule,
     MatDialogRef,
-}                              from '@angular/material/dialog';
-import { MatFormFieldModule }  from '@angular/material/form-field';
-import { MatInputModule }      from '@angular/material/input';
+}                                 from '@angular/material/dialog';
+import { MatFormFieldModule }     from '@angular/material/form-field';
+import { MatInputModule }         from '@angular/material/input';
 import {
     MatSnackBar,
     MatSnackBarModule,
-}                              from '@angular/material/snack-bar';
+}                                 from '@angular/material/snack-bar';
 import {
     finalize,
     Observable,
-}                              from 'rxjs';
+}                                 from 'rxjs';
 import { ConfirmDialogComponent } from '../../../app/components/confirm-dialog/confirm-dialog.component';
-import { FileUploadService }   from '../../../app/providers/file-upload.service';
-import { PlanetForm }          from '../../forms/planet.form';
-import { Planet }              from '../../repository/planet';
-import { PlanetsRepository }   from '../../repository/planets.repository';
+import { FileUploadService }      from '../../../app/providers/file-upload.service';
+import { PlanetForm }             from '../../forms/planet.form';
+import { Planet }                 from '../../repository/planet';
+import { PlanetsRepository }      from '../../repository/planets.repository';
 
 type DialogData = { planet?: Planet };
 type Mode = 'update' | 'create';
@@ -99,10 +97,10 @@ export class PlanetFormDialogComponent {
 
         const confirmRef = this._dialog.open(ConfirmDialogComponent, {
             width: '400px',
-            data: {
-                action: this.mode,
-                itemName: this.form.value.planetName || 'planet'
-            }
+            data:  {
+                action:   this.mode,
+                itemName: this.form.value.planetName || 'planet',
+            },
         });
 
         confirmRef.afterClosed().subscribe((confirmed: boolean) => {

@@ -1,11 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     Component,
     DestroyRef,
     Input,
     OnChanges,
     SimpleChanges,
-}                    from '@angular/core';
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
     isObservable,
@@ -25,6 +26,7 @@ import { PlanetCardComponent } from '../planet-card/planet-card.component';
     ],
     templateUrl: './planets-cards-view.component.html',
     styleUrl:    './planets-cards-view.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlanetsCardsViewComponent implements OnChanges {
 
@@ -33,10 +35,7 @@ export class PlanetsCardsViewComponent implements OnChanges {
 
     public planets$!: Observable<Planet[]>;
 
-    constructor(
-        private readonly _destroyRef: DestroyRef,
-    ) {
-    }
+    constructor( private readonly _destroyRef: DestroyRef ) {}
 
     public async ngOnChanges(changes: SimpleChanges): Promise<void> {
         if (!changes['planets'] || !this.planets) {

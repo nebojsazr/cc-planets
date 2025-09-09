@@ -8,30 +8,30 @@ import {
     OnChanges,
     SimpleChanges,
     ViewChild,
-} from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+}                                   from '@angular/core';
+import { takeUntilDestroyed }       from '@angular/core/rxjs-interop';
 import {
     MatSort,
     MatSortModule,
-}                 from '@angular/material/sort';
+}                                   from '@angular/material/sort';
 import {
     MatTableDataSource,
     MatTableModule,
-}                 from '@angular/material/table';
-import { RouterLink } from '@angular/router';
+}                                   from '@angular/material/table';
+import { RouterLink }               from '@angular/router';
 import {
-    firstValueFrom,
     isObservable,
     Observable,
-}                 from 'rxjs';
-import { Planet } from '../../repository/planet';
+    Unsubscribable,
+}                                   from 'rxjs';
+import { Planet }                   from '../../repository/planet';
 import { PlanetThumbnailComponent } from '../planet-thumbnail/planet-thumbnail.component';
 
 @Component({
     selector:        'app-planets-table-view',
     standalone:      true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
+    imports:         [
         MatTableModule,
         MatSortModule,
         PlanetThumbnailComponent,
@@ -42,9 +42,9 @@ import { PlanetThumbnailComponent } from '../planet-thumbnail/planet-thumbnail.c
 })
 export class PlanetsTableViewComponent implements OnChanges, AfterViewInit {
 
-    @Input() planets: Observable<Planet[]> | Planet[] | null = null;
+    @Input() public planets: Observable<Planet[]> | Planet[] | null = null;
 
-    public planetsSource = new MatTableDataSource<Planet>([]);
+    public planetsSource: MatTableDataSource<Planet> = new MatTableDataSource<Planet>([]);
 
     public planetColumns: string[] = [
         'name',
@@ -54,26 +54,32 @@ export class PlanetsTableViewComponent implements OnChanges, AfterViewInit {
         'distEarth',
     ];
 
-    @ViewChild(MatSort) sortTable!: MatSort;
+    @ViewChild(MatSort) public sortTable!: MatSort;
+
+    private _subscription: Unsubscribable | null = null;
 
     constructor(
         private readonly _cdr: ChangeDetectorRef,
         private readonly _destroyRef: DestroyRef,
-    ) {}
+    ) {
+    }
 
     public async ngOnChanges(changes: SimpleChanges): Promise<void> {
         if (!changes['planets'] || !this.planets) {
             return;
         }
 
+        this._subscription?.unsubscribe();
+        this._subscription = null;
+
         if (isObservable(this.planets)) {
-            this.planets.pipe(
+            this._subscription = this.planets.pipe(
                 takeUntilDestroyed(this._destroyRef),
             ).subscribe(p => {
                 this.planetsSource.data = p;
                 this._cdr.markForCheck();
             });
-            
+
             return;
         }
 

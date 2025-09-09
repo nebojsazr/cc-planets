@@ -1,14 +1,9 @@
 import {
     Injectable,
     signal,
-    Signal,
-} from '@angular/core';
-import {
-    Observable,
-    Subject,
-} from 'rxjs';
+}                      from '@angular/core';
 import { ToolbarType } from '../../planets/model';
-import { Planet } from '../../planets/repository/planet';
+import { Planet }      from '../../planets/repository/planet';
 
 export interface IHeader {
     title: string;
@@ -16,14 +11,9 @@ export interface IHeader {
     item?: Planet,
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class HeaderStateService {
-    
-    private readonly _headerState = signal<IHeader | null>(null);
-    
-    readonly headerState = this._headerState.asReadonly();
-    
-    public updateHeaderState(headerState: IHeader): void {
-        this._headerState.set(headerState);
-    }
+
+    public readonly headerState = signal<IHeader | null>(null);
+
 }

@@ -28,12 +28,12 @@ export class PlanetForm extends FormGroup {
             description:    new FormControl(planet?.description ?? '', {
                 validators: [Validators.maxLength(2000)],
             }),
-            // image is handled separately, but keep control for binding
+            // image is handled separately
             image: new FormControl<File | null>(null),
         });
     }
 
-    toDto(): any {
+    public toDto(): any {
         const v = this.getRawValue();
         return {
             planetName:       v.planetName.trim(),

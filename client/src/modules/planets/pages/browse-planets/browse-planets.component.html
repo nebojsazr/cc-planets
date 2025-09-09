@@ -1,10 +1,10 @@
 @if (viewType$ | async; as viewType) {
     @switch (viewType) {
         @case ('table') {
-            <app-planets-table-view [planets]="filteredPlanets$"></app-planets-table-view>
+            <app-planets-table-view [planets]="filteredPlanets$" />
         }
         @case ('card') {
-            <app-planets-cards-view [planets]="filteredPlanets$ | async"></app-planets-cards-view>
+            <app-planets-cards-view [planets]="filteredPlanets$ | async" />
         }
     }
 }

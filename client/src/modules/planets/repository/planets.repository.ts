@@ -1,52 +1,52 @@
 import { HttpClient } from '@angular/common/http';
-import {
-    inject,
-    Injectable,
-}                     from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
     map,
     Observable,
-} from 'rxjs';
+}                     from 'rxjs';
 import { Planet }     from './planet';
 
 @Injectable({providedIn: 'root'})
 export class PlanetsRepository {
-    private readonly http    = inject(HttpClient);
-    private readonly baseUrl = '/api/planets';
+
+    private readonly _baseUrl = '/api/planets'; // This should be environment
+
+    constructor(private readonly _http: HttpClient) {
+    }
 
     /**
      * Create a new planet
      */
-    createPlanet(data: Record<string, any> | FormData): Observable<Planet> {
-        return this.http.post<Planet>(this.baseUrl, data);
+    public createPlanet(data: Record<string, any> | FormData): Observable<Planet> {
+        return this._http.post<Planet>(this._baseUrl, data);
     }
 
     /**
      * Update the existing planet
      */
-    updatePlanet(id: string, data: Record<string, any> | FormData): Observable<Planet> {
-        return this.http.put<Planet>(`${this.baseUrl}/${id}`, data);
+    public updatePlanet(id: string, data: Record<string, any> | FormData): Observable<Planet> {
+        return this._http.put<Planet>(`${this._baseUrl}/${id}`, data);
     }
 
     /**
      * Retrieve all planets.
      */
-    getPlanets(): Observable<Planet[]> {
-        return this.http.get<Planet[]>(this.baseUrl);
+    public getPlanets(): Observable<Planet[]> {
+        return this._http.get<Planet[]>(this._baseUrl);
     }
 
     /**
      * Retrieve single planet.
      */
-    getSinglePlanets(id: string): Observable<Planet> {
-        return this.http.get<Planet>(`${this.baseUrl}/${id}`);
+    public getSinglePlanets(id: string): Observable<Planet> {
+        return this._http.get<Planet>(`${this._baseUrl}/${id}`);
     }
 
     /**
      * Delete single planet.
      */
-    deletePlanet(id: string): Observable<Planet> {
-        return this.http.delete<Planet[]>(`${this.baseUrl}/${id}`).pipe(
+    public deletePlanet(id: string): Observable<Planet> {
+        return this._http.delete<Planet[]>(`${this._baseUrl}/${id}`).pipe(
             map(planets => planets[0]),
         );
     }

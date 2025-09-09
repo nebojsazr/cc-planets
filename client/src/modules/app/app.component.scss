@@ -1,12 +1,18 @@
+@import "../../assets/styles/variables";
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     padding: 0 2.5rem;
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 article {
-    padding: 2.5rem;
+    padding: 1.5rem;
+    
+    @media screen and (min-width: $breakpoint-sm) {
+        padding: 2.5rem;
+    }
 }

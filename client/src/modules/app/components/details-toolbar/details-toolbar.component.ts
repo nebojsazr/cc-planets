@@ -32,7 +32,7 @@ export class DetailsToolbarComponent {
     ) {
     }
 
-    public onDelete() {
+    public onDelete(): void {
         const confirmRef = this._dialog.open(ConfirmDialogComponent, {
             width: '400px',
             data:  {
@@ -45,22 +45,22 @@ export class DetailsToolbarComponent {
             this._repository.deletePlanet(this.planet.id).pipe(
                 takeUntilDestroyed(this._destroyRef),
             ).subscribe(planet => {
-                console.info(planet.planetName + ' has been deleted.');
                 this._router.navigate(['/']);
             })
         });
     }
 
-    openEditDialog(): void {
+    public openEditDialog(): void {
         const dialogRef = this._dialog.open(PlanetFormDialogComponent, {
             width:        '600px',
             disableClose: true,
             data:         {mode: 'edit', planet: this.planet},
         });
 
-        dialogRef.afterClosed().subscribe((result?: Planet) => {
+        dialogRef.afterClosed().pipe(
+            takeUntilDestroyed(this._destroyRef),
+        ).subscribe((result?: Planet) => {
             if (result) {
-                console.info('Planet updated:', result);
                 const currentUrl = this._router.url;
                 // In real world this would be updating a state
                 this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

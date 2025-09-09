@@ -24,8 +24,8 @@ import { HeaderStateService }      from './providers/header-state.service';
     ],
 })
 export class AppComponent {
-    public ToolbarType = ToolbarType;
+    
+    public readonly ToolbarType: typeof ToolbarType = ToolbarType;
 
-    constructor(public headerStateService: HeaderStateService) {
-    }
+    constructor(public readonly headerStateService: HeaderStateService) {}
 }

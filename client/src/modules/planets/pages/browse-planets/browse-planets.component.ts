@@ -56,7 +56,7 @@ export class BrowsePlanetsComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this._headerStateService.updateHeaderState({
+        this._headerStateService.headerState.set({
             title:       'Planets',
             toolbarType: ToolbarType.BROWSE,
         });

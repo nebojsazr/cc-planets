@@ -4,16 +4,16 @@
 
         <div class="toolbar">
             @if (header.toolbarType === ToolbarType.BROWSE) {
-                <app-browse-toolbar></app-browse-toolbar>
+                <app-browse-toolbar />
             }
             @if (header.toolbarType === ToolbarType.DETAILS) {
-                <app-details-toolbar [planet]="(header.item!)"></app-details-toolbar>
+                <app-details-toolbar [planet]="(header.item!)" />
             }
         </div>
     }
 </header>
 
 <article>
-    <router-outlet></router-outlet>
+    <router-outlet />
 </article>
 

@@ -28,8 +28,7 @@ export type Action = 'create' | 'edit' | 'delete';
 })
 export class ConfirmDialogComponent {
     constructor(
-        public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { action: Action; itemName: string },
-    ) {
-    }
+        public readonly dialogRef: MatDialogRef<ConfirmDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public readonly data: { action: Action; itemName: string },
+    ) {}
 }

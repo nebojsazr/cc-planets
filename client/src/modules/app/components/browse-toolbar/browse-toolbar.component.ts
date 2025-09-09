@@ -52,7 +52,7 @@ export class BrowseToolbarComponent implements OnInit {
 
     public preferredView!: ViewType;
     
-    public searchControl = new FormControl('');
+    public searchControl: FormControl = new FormControl('');
 
     constructor(
         private readonly _preferredViewService: PreferredViewService,
@@ -79,16 +79,15 @@ export class BrowseToolbarComponent implements OnInit {
         this._preferredViewService.updateView(viewType)
     }
 
-    openCreateDialog(): void {
+    public openCreateDialog(): void {
         const dialogRef = this._dialog.open(PlanetFormDialogComponent, {
             width: '600px',
             disableClose: true,
-            data: { mode: 'create' } // pass extra data to dialog
+            data: { mode: 'create' }
         });
 
         dialogRef.afterClosed().subscribe((result?: Planet) => {
             if (result) {
-                console.info('Planet created: ', result);
                 // In real world scenario this would be updating a state
                 const currentUrl = this._router.url;
                 this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
